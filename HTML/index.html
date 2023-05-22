@@ -10,10 +10,16 @@
     <script src="../JS/script.js"></script>
   </head>
   <body>
-    <header>
+    <header id="cabecalho">
+      <button onclick="toggleSideBar()" class="btn-menu-header">
+        <i class="fa-solid fa-bars fa-xl" style="color: #ff8c00;"></i>
+      </button>
       <img src="../img/LOGO3.png" alt="Minha logo" />
       <h1></h1>
-      <nav class="navegacao">
+      <nav class="navegacao" id="navegacaoCabecalho">
+        <button onclick="toggleSideBar()" class="btn-menu-header-next">
+          <i class="fa-regular fa-circle-xmark fa-xl" style="color: #ff8c00;"></i>
+        </button>
         <ul>
           <li><a class="botaoNavegacao" href="#Inicio">Inicio</a></li>
           <li><a class="botaoNavegacao" href="#about">Sobre</a></li>
@@ -22,8 +28,7 @@
         </ul>
       </nav>
     </header>
-    <hr />
-    <main>
+    <main onclick="closeSideBar()">
       <!-- inicio -->
       <section id="Inicio">
         <div class="container-main">
@@ -43,7 +48,7 @@
             <h3>Dev. FullStack Junior</h3>
             <p>
               Este é meu Website e Portfólio oficial.<br />
-              Todos os detalhes dos trabalhos desenvolvidos por mim estão aqui.
+              Todos os detalhes dos trabalhos desenvolvidos <br>por mim estão aqui.
             </p>
             <div class="icon-social2">
               <i title="HTML" class="fa-brands fa-html5 fa-xl" style="color: #ff8c00;"></i>  
@@ -141,7 +146,7 @@
     </main>
     <div class="container-paralax parallax-2"></i></div>
     <div id="btnTopo"><i class="fa-solid fa-xl fa-arrow-up fa-beat" style="color: #ff8c00;"></i></div>
-    <footer id="contato">
+    <footer onclick="closeSideBar()" id="contato">
       <div class="container-footer">
         <div class="subContainer-footer">
           <h3 class="tituloFooter">mateus rubinho</h3>
@@ -191,13 +196,41 @@
       </div>
     </footer>
     <script>
+         let cabecalho = document.getElementById('cabecalho');
+         let navegacaoCabecalho = document.getElementById('navegacaoCabecalho')
+         let showSideBar = false;
+
+
+         function toggleSideBar() {
+           showSideBar = !showSideBar;
+           if(showSideBar)
+           {
+              navegacaoCabecalho.style.marginLeft = '-63vw';
+              navegacaoCabecalho.style.animationName = 'showSideBar'
+              console.log(showSideBar);
+           }else
+           {
+                 navegacaoCabecalho.style.marginLeft = '-190vw';
+                 navegacaoCabecalho.style.animationName = ''  
+                 console.log(showSideBar);
+           }
+        }
+        function closeSideBar() {
+           if(showSideBar)
+           {
+               toggleSideBar();
+           }
+        }
+
             document.addEventListener('scroll', scroll);
+            let btnMenu = document.getElementById('btnMenu');
             const header = document.querySelector('header');
             function scroll() 
             {
               if(window.pageYOffset > 0)
               {
-                header.classList.add('scrolled')
+                header.classList.add('scrolled');
+
               }else
               {
                 console.log(addEventListener);
